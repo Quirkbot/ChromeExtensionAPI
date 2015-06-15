@@ -1,7 +1,7 @@
 (function (){
 	"use strict";
 
-	var ChromeExternalAPIServer = function(){
+	var ChromeExtensionAPIServer = function(){
 		var self = this,
 		methods = {},
 		events = {};
@@ -175,11 +175,11 @@
 
 	if(typeof define !== 'undefined'){
 		define([], function(){
-			return ChromeExternalAPIServer;
+			return ChromeExtensionAPIServer;
 		});
 	}
 	else if (typeof exports !== 'undefined'){
-		exports.ChromeExternalAPIServer = ChromeExternalAPIServer;
+		exports.ChromeExtensionAPIServer = ChromeExtensionAPIServer;
 	}
-	else window.ChromeExternalAPIServer = ChromeExternalAPIServer;
+	else window.ChromeExtensionAPIServer = ChromeExtensionAPIServer;
 })();

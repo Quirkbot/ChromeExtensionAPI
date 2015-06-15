@@ -1,1 +1,1 @@
-# ChromeExternalAPI
+# ChromeExtensionAPI
