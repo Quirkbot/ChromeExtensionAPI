@@ -49,7 +49,7 @@
 			}
 			return method;
 		}
-		var generateEvent = function(eventName){			
+		var generateEvent = function(eventName){
 			return {
 				add: generateEventListenerAdder(eventName),
 				remove: generateEventListenerRemover(eventName)
@@ -123,19 +123,24 @@
 					}
 				})
 
-				var message = {
-					removeListener: true,
-					uuid: removed.uuid,
-					name: eventName,
-					arguments: []
-				};
+				// Listener might be void in case we never connect to the extension
+				if(removed){
+					var message = {
+						removeListener: true,
+						uuid: removed.uuid,
+						name: eventName,
+						arguments: []
+					};
 
-				removed.port.postMessage(message);
-				removed.port.disconnect();
+					removed.port.postMessage(message);
+					removed.port.disconnect();
+					
+					var promise = new Promise(function(resolve, reject){
+						resolve();
+					});
+				}
+
 				
-				var promise = new Promise(function(resolve, reject){
-					resolve();
-				});
 
 				return promise;
 			}
